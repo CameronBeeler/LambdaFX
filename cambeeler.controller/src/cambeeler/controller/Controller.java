@@ -67,9 +67,20 @@ public class Controller {
 //           }
 //       }, employee.get(0).getName(), employee.get(1).getName());
 
-        String sillyString = doStringStuff((s1, s2)-> s1.toUpperCase() + s2.toUpperCase(),
-                                           employee.get(0).getName(),
-                                           employee.get(1).getName());
+        // Quick and easy single use lambda
+//        String sillyString = doStringStuff((s1, s2)-> s1.toUpperCase() + s2.toUpperCase(),
+//                                           employee.get(0).getName(),
+//                                           employee.get(1).getName());
+
+        // assign the lambda to a variable and you can use it multiple times...
+        UpperConcat uc = (s1, s2) -> {
+            String result = s1.toUpperCase() + "+" + s2.toUpperCase();
+            return result;
+        };
+        String sillyString = doStringStuff(uc, employee.get(0).getName(), employee.get(1).getName());
+
+        System.out.println(sillyString);
+        sillyString = doStringStuff(uc, employee.get(3).getName() ,    employee.get(2).getName());
 
        System.out.println(sillyString);
 }
