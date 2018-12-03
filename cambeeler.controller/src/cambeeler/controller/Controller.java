@@ -41,10 +41,16 @@ public class Controller {
 //                return first.getName().compareToIgnoreCase(second.getName());
 //            }
 //        });
+/*
+        Collections.sort(employee, (Employee employee1, Employee employee2)->
+        {return employee1.getName().compareToIgnoreCase(employee2.getName());});
+        */
+
+//        Alternate Lambda implementation...
 
         Collections.sort(employee, (employee1, employee2)->
-        {return employee1.getName().compareToIgnoreCase(employee2.getName());});
-
+        {return employee1.getName().compareToIgnoreCase(employee2.getName());}
+        );
 
         for(Employee emp:employee)
         {
