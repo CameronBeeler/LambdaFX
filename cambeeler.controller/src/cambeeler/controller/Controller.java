@@ -11,12 +11,12 @@ public class Controller {
     @FXML public void iGotPushed()
     {
         System.out.println("You pushed the Button!");
-        new Thread(()->
+        new Thread(() ->
                    {
                        System.out.println("This is the lambda execute of the thread - iGotPushed");
                        System.out.println("This is line 2 of the inner lambda method");
                    }
-                   ).start();
+        ).start();
 //        new Thread(new Runnable(){
 //
 //            @Override
@@ -48,13 +48,34 @@ public class Controller {
 
 //        Alternate Lambda implementation...
 
-        Collections.sort(employee, (employee1, employee2)->
-          employee1.getName().compareToIgnoreCase(employee2.getName()));
+        Collections.sort(employee, (employee1, employee2) ->
+                employee1.getName().compareToIgnoreCase(employee2.getName()));
 
-        for(Employee emp:employee)
+        for (Employee emp : employee)
         {
             System.out.println(emp.getName());
         }
+
+
+//        String sillyString = doStringStuff(new UpperConcat()
+//       {
+//           @Override
+//           public
+//           String upperAndConcat(String s1, String s2)
+//           {
+//              return s1.toUpperCase() + s2.toUpperCase();
+//           }
+//       }, employee.get(0).getName(), employee.get(1).getName());
+
+        String sillyString = doStringStuff((s1, s2)-> s1.toUpperCase() + s2.toUpperCase(),
+                                           employee.get(0).getName(),
+                                           employee.get(1).getName());
+
+       System.out.println(sillyString);
+}
+    public final static String doStringStuff(UpperConcat uc, String s1, String s2)
+    {
+        return uc.upperAndConcat(s1, s2);
     }
 }
 
@@ -93,4 +114,9 @@ class Employee
     {
         this.age = age;
     }
+}
+
+interface UpperConcat
+{
+    public String upperAndConcat(String s1, String s2);
 }
