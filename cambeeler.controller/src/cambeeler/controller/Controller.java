@@ -49,8 +49,7 @@ public class Controller {
 //        Alternate Lambda implementation...
 
         Collections.sort(employee, (employee1, employee2)->
-        {return employee1.getName().compareToIgnoreCase(employee2.getName());}
-        );
+          employee1.getName().compareToIgnoreCase(employee2.getName()));
 
         for(Employee emp:employee)
         {
