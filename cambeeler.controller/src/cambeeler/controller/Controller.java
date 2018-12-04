@@ -73,17 +73,22 @@ public class Controller {
 //                                           employee.get(1).getName());
 
         // assign the lambda to a variable and you can use it multiple times...
-        UpperConcat uc = (s1, s2) -> {
-            String result = s1.toUpperCase() + "+" + s2.toUpperCase();
-            return result;
-        };
-        String sillyString = doStringStuff(uc, employee.get(0).getName(), employee.get(1).getName());
+//        UpperConcat uc = (s1, s2) -> {
+//            String result = s1.toUpperCase() + "+" + s2.toUpperCase();
+//            return result;
+//        };
+//        String sillyString = doStringStuff(uc, employee.get(0).getName(), employee.get(1).getName());
+//
+//        System.out.println(sillyString);
+//        sillyString = doStringStuff(uc, employee.get(3).getName() ,    employee.get(2).getName());
+//
+//       System.out.println(sillyString);
+//}
+        AnotherClass ac = new AnotherClass();
+        String       s  = ac.doSomething();
+        System.out.println(s);
+    }
 
-        System.out.println(sillyString);
-        sillyString = doStringStuff(uc, employee.get(3).getName() ,    employee.get(2).getName());
-
-       System.out.println(sillyString);
-}
     public final static String doStringStuff(UpperConcat uc, String s1, String s2)
     {
         return uc.upperAndConcat(s1, s2);
@@ -130,4 +135,32 @@ class Employee
 interface UpperConcat
 {
     public String upperAndConcat(String s1, String s2);
+}
+
+class AnotherClass
+{
+    public String doSomething()
+    {
+        UpperConcat uc = (s1, s2) ->
+        {
+            System.out.println("the lambda expression class name is " + getClass().getSimpleName());
+            String upper = s1.toUpperCase() + " x " + s2.toUpperCase();
+            return upper;
+        };
+        System.out.println("Another class classes name is " + getClass().getSimpleName());
+        return Controller.doStringStuff(uc, "String1", "String2");
+
+/*        System.out.println("The doSomething classes name is " + getClass().getSimpleName());
+        return Controller.doStringStuff(new UpperConcat()
+        {
+            @Override
+            public
+            String upperAndConcat(String s1, String s2)
+            {
+                System.out.println("The anonymous classes name is " + getClass().getSimpleName());
+              return s1.toUpperCase() + " x " + s2.toUpperCase();
+            }
+        }, "String 1", "String 2");
+*/
+    }
 }
